@@ -1,0 +1,15 @@
+.intro-wrap {
+    width: calc(100% - 100px);
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-left: 100px;
+    flex-direction: column;
+    h1{
+        font-weight: 900;
+        font-size: 5rem;
+    }
+}

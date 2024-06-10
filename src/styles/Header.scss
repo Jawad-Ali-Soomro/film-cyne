@@ -1,0 +1,17 @@
+.header-wrap {
+    width: calc(100% - 100px);
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 12vh;
+    position: fixed;
+    color: white;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+        span{
+            color: orange;
+        }
+    }
+}
