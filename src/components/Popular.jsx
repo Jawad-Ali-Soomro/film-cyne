@@ -1,18 +1,16 @@
 import React from "react";
-import "../styles/Home.scss";
-import Slider from "../components/Swiper";
-import Header from "../components/Header";
+import "../styles/Popular.scss";
 import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
-import Popular from "../components/Popular";
+import { useEffect } from "react";
+import { image_url } from "../constant";
 
-const Home = () => {
+const Popular = () => {
   const [main_data, set_data] = useState();
   const options = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/genre/movie/list",
-    params: { language: "en" },
+    url: "https://api.themoviedb.org/3/movie/popular",
+    params: { language: "en-US", page: "1" },
     headers: {
       accept: "application/json",
       Authorization:
@@ -24,34 +22,32 @@ const Home = () => {
     await axios
       .request(options)
       .then(function (response) {
-        set_data(response.data.genres.splice(0,8));
+        set_data(response.data.results.splice(0, 8));
       })
       .catch(function (error) {
         console.error(error);
       });
   };
   useEffect(() => {
-    fetch_data()
-  })
+    fetch_data();
+  });
   return (
-    <div>
-      <Header />
-      <Slider />
-      <div className="genres">
-        <h1>Explore Movie Genres</h1>
-        <div className="wrap">
-          {
-          main_data?.map((genre) =>  {
-            return <div className="main">
-              <p>{genre.name}</p>
+    <div className="genres">
+      <h1>Popular Movies</h1>
+      <div className="wrap">
+        {main_data?.map((movie) => {
+          return (
+            <div className="card">
+              <img src={`${image_url}/${movie?.poster_path}`} alt="" />
+              <div className="content">
+                
+              </div>
             </div>
-          })
-          }
-        </div>
+          );
+        })}
       </div>
-      <Popular />
     </div>
   );
 };
 
-export default Home;
+export default Popular;
